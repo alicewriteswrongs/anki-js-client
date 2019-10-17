@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+.kanji-list {
+}
+
+.kanjis {
+    max-width: 400px;
+    margin: auto;
+}
+
+.kanji {
+    font-size: 60px;
+    display: inline;
+}
