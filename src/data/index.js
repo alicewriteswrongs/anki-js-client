@@ -5,37 +5,31 @@ export const { kanji, vocab } = data
 const getKanjiMap = kanji => {
   const map = {}
   kanji.forEach(entry => {
-    map[entry.kanji] = entry
+    map[entry.fields.Kanji] = entry
   })
   return map
 }
 
-export const kanjiMap = getKanjiMap(kanji)
-
-const getKanjiLevels = kanji => {
+export const getKanjiLevels = kanji => {
   return kanji.reduce((acc, entry) => {
-    const tag = entry.tags.split(' ')[1]
+    const tag = entry.tags[1]
     if (acc[tag]) {
-      acc[tag].push(entry.kanji)
+      acc[tag].push(entry.fields.Kanji.value)
     } else {
-      acc[tag] = [ entry.kanji ]
+      acc[tag] = [ entry.fields.Kanji.value ]
     }
     return acc
   }, {})
 }
 
-export const kanjiByLevels = getKanjiLevels(kanji)
-
-const getVocabLevels = vocab => {
+export const getVocabLevels = vocab => {
   return vocab.reduce((acc, entry) => {
-    const tag = entry.tag.split(' ')[0]
+    const tag = entry.tags[0]
     if (acc[tag]) {
-      acc[tag].push(entry.word)
+      acc[tag].push(entry.fields.Vocab.value)
     } else {
-      acc[tag] = [ entry.word ]
+      acc[tag] = [ entry.fields.Vocab.value ]
     }
     return acc
   }, {})
 }
-
-export const vocabByLevels = getVocabLevels(vocab)

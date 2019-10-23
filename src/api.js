@@ -16,7 +16,7 @@ const ankiRequest = async (action, params = {}) => {
 
 window.ankiRequest = ankiRequest
 
-export function useDeckInfo(deckName) {
+export function useDeckInfo(deckName, transformFunction = null) {
   const [isFinished, setIsFinished] = useState(false)
   const [notes, setNotes] = useState(null)
 
@@ -26,11 +26,10 @@ export function useDeckInfo(deckName) {
         query: `deck:${deckName}`
       })
       const noteData = await ankiRequest("notesInfo", { notes: notesInDeck })
-      setNotes(noteData)
+      setNotes(transformFunction ? transformFunction(noteData) : noteData)
       setIsFinished(true)
-      console.log(noteData)
     }
     makeRequest()
-  }, [deckName])
+  }, [deckName, transformFunction])
   return [isFinished, notes]
 }
