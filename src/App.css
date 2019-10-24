@@ -21,15 +21,33 @@
   color: #09d3ac;
 }
 
-.kanji-list {
+.item-list {
 }
 
-.kanjis {
+.kanjis,.vocabs {
     max-width: 400px;
     margin: auto;
 }
 
-.kanji {
+.kanji,.vocab {
     font-size: 60px;
     display: inline;
+}
+
+.vocabs {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vocab {
+    margin: 10px;
+}
+
+.vocab:hover {
+    border-bottom: 5px solid green;
+    margin-bottom: 5px;
 }
