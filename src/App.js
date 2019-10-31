@@ -1,80 +1,22 @@
-import React, { useState } from "react"
+import React from "react"
 import logo from "./logo.svg"
 import "./App.css"
-import { useDeckInfo } from "./api.js"
+import { Provider } from 'react-redux';
+import { Provider as ReduxQueryProvider } from 'redux-query-react';
 
-import { getKanjiLevels, getVocabLevels } from "./data"
+import HomePage from './HomePage'
 
-const VOCAB_DECK_NAME = "日本語::kanji_vocab"
-const KANJI_DECK_NAME = "日本語::kanji"
+import store from './store';
 
-const KANJI = "KANJI"
-const VOCAB = "VOCAB"
+export const getQueries = state => state.queries;
 
 function App() {
-  const [thingToShow, setThingToShow] = useState(KANJI)
-  const [isKanjiFinished, kanjiByLevels] = useDeckInfo(
-    KANJI_DECK_NAME,
-    getKanjiLevels
-  )
-  const [isVocabFinished, vocabByLevels] = useDeckInfo(
-    VOCAB_DECK_NAME,
-    getVocabLevels
-  )
-
   return (
-    <div className="App">
-      <div>
-        <input
-          type="radio"
-          id="kanjiopt"
-          name="drone"
-          value={KANJI}
-          checked={thingToShow === KANJI}
-          onChange={e => {
-            setThingToShow(e.target.value)
-          }}
-        />
-        <label for="kanjiopt">Kanji</label>
-        <input
-          type="radio"
-          id="vocabobt"
-          name="drone"
-          value={VOCAB}
-          checked={thingToShow === VOCAB}
-          onChange={e => {
-            setThingToShow(e.target.value)
-          }}
-        />
-        <label for="vocabopt">Vocab</label>
-      </div>
-      <div className="item-list">
-        {isKanjiFinished && thingToShow === KANJI
-          ? Object.keys(kanjiByLevels).map(level => (
-              <div className="kanji-level">
-                <h2>{level}</h2>
-                <div className="kanjis">
-                  {kanjiByLevels[level].map(kanji => (
-                    <div className="kanji">{kanji}</div>
-                  ))}
-                </div>
-              </div>
-            ))
-          : null}
-        {isVocabFinished && thingToShow === VOCAB
-          ? Object.keys(vocabByLevels).map(level => (
-              <div className="vocab-level">
-                <h2>{level}</h2>
-                <div className="vocabs">
-                  {vocabByLevels[level].map(vocab => (
-                    <div className="vocab">{vocab}</div>
-                  ))}
-                </div>
-              </div>
-            ))
-          : null}
-      </div>
-    </div>
+    <Provider store={store}>
+      <ReduxQueryProvider queriesSelector={getQueries}>
+      <HomePage />
+      </ReduxQueryProvider>
+    </Provider>
   )
 }
 
