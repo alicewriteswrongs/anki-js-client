@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, combineReducers } from "redux"
+import { compose, applyMiddleware, createStore, combineReducers } from "redux"
 import { entitiesReducer, queriesReducer, queryMiddleware } from "redux-query"
 
 export const getQueries = state => state.queries
@@ -28,7 +28,9 @@ const networkInterface = (url, method, networkOptions) => {
 
 const store = createStore(
   reducer,
-  applyMiddleware(queryMiddleware(networkInterface, getQueries, getEntities))
+  compose(applyMiddleware(queryMiddleware(networkInterface, getQueries, getEntities)),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 )
 
 export default store

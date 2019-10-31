@@ -1,7 +1,10 @@
 import React, { useState } from "react"
 import { useRequest } from 'redux-query-react';
+import { useSelector } from "react-redux"
+
 import { useDeckInfo } from "./api.js"
-import { kanjiRequest } from './queries'
+import { kanjiDeckInfoRequest, vocabDeckInfoRequest } from './queries'
+import { getNoteIds } from './selectors'
 
 import { getKanjiLevels, getVocabLevels } from "./data"
 
@@ -22,7 +25,15 @@ export default function HomePage() {
   //   getVocabLevels
   // )
 
-  const [] = useRequest(kanjiRequest())
+  const [] = useRequest(kanjiDeckInfoRequest())
+  const [] = useRequest(vocabDeckInfoRequest())
+
+  const {
+    kanjiNotes,
+    vocabNotes
+  } = useSelector(getNoteIds)
+
+  console.log(kanjiNotes);
 
   return <div />
   // return (

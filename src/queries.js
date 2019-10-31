@@ -1,5 +1,5 @@
 // query to fetch kanji
-import R from "ramda"
+import { merge } from "ramda"
 
 const ANKI_URL = "http://127.0.0.1:8765"
 
@@ -24,18 +24,20 @@ export const deckInfoRequestFactory = (deckName, key) => () => ({
       }
     }
   },
-  update: R.merge,
+  update: {
+    notesInDecks: merge,
+  },
   options: {
     method: "POST"
   }
 })
 
-const kanjiDeckInfoRequest = deckInfoRequestFactory(
+export const kanjiDeckInfoRequest = deckInfoRequestFactory(
   KANJI_DECK_NAME,
   'kanji'
 )
 
-const vocabDeckInfoRequest = deckInfoRequestFactory(
+export const vocabDeckInfoRequest = deckInfoRequestFactory(
   VOCAB_DECK_NAME,
   'vocab'
 )
