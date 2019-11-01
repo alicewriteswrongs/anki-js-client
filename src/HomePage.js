@@ -1,10 +1,15 @@
 import React, { useState } from "react"
-import { useRequest } from 'redux-query-react';
+import { useRequest } from "redux-query-react"
 import { useSelector } from "react-redux"
 
 import { useDeckInfo } from "./api.js"
-import { kanjiDeckInfoRequest, vocabDeckInfoRequest } from './queries'
-import { getNoteIds } from './selectors'
+import {
+  kanjiDeckInfoRequest,
+  vocabDeckInfoRequest,
+  kanjiInfoRequest,
+  vocabInfoRequest
+} from "./queries"
+import { getNoteIds } from "./selectors"
 
 import { getKanjiLevels, getVocabLevels } from "./data"
 
@@ -25,15 +30,14 @@ export default function HomePage() {
   //   getVocabLevels
   // )
 
-  const [] = useRequest(kanjiDeckInfoRequest())
-  const [] = useRequest(vocabDeckInfoRequest())
+  const [{ isPending: kanjiPending }] = useRequest(kanjiDeckInfoRequest())
+  const [{ isPending: vocabPending}] = useRequest(vocabDeckInfoRequest())
 
-  const {
-    kanjiNotes,
-    vocabNotes
-  } = useSelector(getNoteIds)
+  const { kanjiNotes, vocabNotes } = useSelector(getNoteIds)
 
-  console.log(kanjiNotes);
+  const [] = useRequest(kanjiNotes ? kanjiInfoRequest(kanjiNotes) : null)
+  const [] = useRequest(vocabNotes ? vocabInfoRequest(vocabNotes) : null)
+
 
   return <div />
   // return (
@@ -91,5 +95,3 @@ export default function HomePage() {
   //   </div>
   // )
 }
-
-

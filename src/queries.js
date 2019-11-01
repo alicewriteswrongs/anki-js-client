@@ -12,7 +12,7 @@ const ankiRequestBody = (action, params = {}) => ({
 const VOCAB_DECK_NAME = "日本語::kanji_vocab"
 const KANJI_DECK_NAME = "日本語::kanji"
 
-export const deckInfoRequestFactory = (deckName, key) => () => ({
+export const notesInDeckRequestFactory = (deckName, key) => () => ({
   url: ANKI_URL,
   body: ankiRequestBody("findNotes", {
     query: `deck:${deckName}`
@@ -32,12 +32,44 @@ export const deckInfoRequestFactory = (deckName, key) => () => ({
   }
 })
 
-export const kanjiDeckInfoRequest = deckInfoRequestFactory(
+export const kanjiDeckInfoRequest = notesInDeckRequestFactory(
   KANJI_DECK_NAME,
   'kanji'
 )
 
-export const vocabDeckInfoRequest = deckInfoRequestFactory(
+export const vocabDeckInfoRequest = notesInDeckRequestFactory(
   VOCAB_DECK_NAME,
   'vocab'
+)
+
+const noteInfoRequestFactory = (key, entryFieldName) => (noteIds) => ({
+  url: ANKI_URL,
+  body: ankiRequestBody("notesInfo", {
+    notes: noteIds
+  }),
+  transform: resp => {
+    const map = {}
+    resp.forEach(entry => {
+      map[entry.fields[entryFieldName].value] = entry
+    })
+    return {
+      [key]: map
+    }
+  },
+  update: {
+    [key]: merge
+  },
+  options: {
+    method: "POST"
+  }
+})
+
+export const kanjiInfoRequest = noteInfoRequestFactory(
+  "kanji",
+  "Kanji",
+)
+
+export const vocabInfoRequest = noteInfoRequestFactory(
+  "vocab",
+  "Vocab"
 )
