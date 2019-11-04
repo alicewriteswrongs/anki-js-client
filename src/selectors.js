@@ -16,12 +16,12 @@ export const getKanjiLevels = createSelector(
     }
 
     return Object.keys(allKanji).reduce((acc, kanji) => {
-      const entry = allKanji[ kanji ]
+      const entry = allKanji[kanji]
       const tag = entry.tags[1]
       if (acc[tag]) {
-        acc[tag].push(entry.fields.Kanji.value)
+        acc[tag].push(entry)
       } else {
-        acc[tag] = [entry.fields.Kanji.value]
+        acc[tag] = [entry]
       }
       return acc
     }, {})
@@ -31,7 +31,7 @@ export const getKanjiLevels = createSelector(
 export const getVocabLevels = createSelector(
   state => state.entities.vocab,
   allVocab => {
-    if (! allVocab) {
+    if (!allVocab) {
       return []
     }
 
@@ -39,11 +39,39 @@ export const getVocabLevels = createSelector(
       const entry = allVocab[vocab]
       const tag = entry.tags[0]
       if (acc[tag]) {
-        acc[tag].push(entry.fields.Vocab.value)
+        acc[tag].push(entry)
       } else {
-        acc[tag] = [entry.fields.Vocab.value]
+        acc[tag] = [entry]
       }
       return acc
     }, {})
+  }
+)
+
+export const getKanjiCardIDs = createSelector(
+  state => state.entities.kanji,
+  (allKanji) => {
+    if (allKanji) {
+      let cardIDs = []
+      Object.keys(allKanji).forEach(kanji => {
+        cardIDs = cardIDs.concat(allKanji[kanji].cards)
+      })
+      return cardIDs
+    }
+    return null
+  }
+)
+
+export const getVocabCardIDs = createSelector(
+  state => state.entities.vocab,
+  (allVocab) => {
+    if (allVocab) {
+      let cardIDs = []
+      Object.keys(allVocab).forEach(vocab => {
+        cardIDs = cardIDs.concat(allVocab[vocab].cards)
+      })
+      return cardIDs
+    }
+    return null
   }
 )

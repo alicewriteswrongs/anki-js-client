@@ -6,9 +6,17 @@ import {
   kanjiDeckInfoRequest,
   vocabDeckInfoRequest,
   kanjiInfoRequest,
-  vocabInfoRequest
+  vocabInfoRequest,
+  cardInfoRequest
 } from "./queries"
-import { getNoteIds, getKanjiLevels, getVocabLevels } from "./selectors"
+import {
+  getNoteIds,
+  getKanjiLevels,
+  getVocabLevels,
+  getKanjiCardIDs,
+  getVocabCardIDs
+} from "./selectors"
+import { intervalToColor } from "./color"
 
 const KANJI = "KANJI"
 const VOCAB = "VOCAB"
@@ -23,6 +31,12 @@ export default function HomePage() {
 
   useRequest(kanjiNotes ? kanjiInfoRequest(kanjiNotes) : null)
   useRequest(vocabNotes ? vocabInfoRequest(vocabNotes) : null)
+
+  const kanjiCards = useSelector(getKanjiCardIDs)
+  const vocabCards = useSelector(getVocabCardIDs)
+
+  useRequest(kanjiCards ? cardInfoRequest(kanjiCards) : null)
+  useRequest(vocabCards ? cardInfoRequest(vocabCards) : null)
 
   const kanjiByLevels = useSelector(getKanjiLevels)
   const vocabByLevels = useSelector(getVocabLevels)
@@ -60,7 +74,16 @@ export default function HomePage() {
                 <h2>{level}</h2>
                 <div className="kanjis">
                   {kanjiByLevels[level].map(kanji => (
-                    <div className="kanji">{kanji}</div>
+                    <div
+                      className="kanji"
+                      style={{
+                        backgroundColor: kanji.interval_avg
+                          ? intervalToColor(kanji.interval_avg)
+                          : "white"
+                      }}
+                    >
+                      {kanji.fields.Kanji.value}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -72,7 +95,16 @@ export default function HomePage() {
                 <h2>{level}</h2>
                 <div className="vocabs">
                   {vocabByLevels[level].map(vocab => (
-                    <div className="vocab">{vocab}</div>
+                    <div
+                      className="vocab"
+                      style={{
+                        backgroundColor: vocab.interval_avg
+                          ? intervalToColor(vocab.interval_avg)
+                          : "white"
+                      }}
+                    >
+                      {vocab.fields.Vocab.value}
+                    </div>
                   ))}
                 </div>
               </div>
