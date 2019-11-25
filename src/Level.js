@@ -2,11 +2,15 @@ import React, { useState } from "react"
 import { useRequest } from "redux-query-react"
 import { useSelector } from "react-redux"
 
-import { getKanjiByLevel, getKanjiCardIDs,
+import {
+  getKanjiByLevel,
+  getKanjiCardIDs,
   getVocabByLevel,
-  getVocabCardIDs} from "./selectors"
+  getVocabCardIDs
+} from "./selectors"
 import { cardInfoRequest } from "./queries"
 import { intervalToColor } from "./color"
+import Kanji from './Kanji'
 
 export default function Level(props) {
   const { level } = props
@@ -24,8 +28,8 @@ export default function Level(props) {
 function LevelInfo(props) {
   const { level } = props
 
-  const [kanji, kanjiData] = useSelector(getKanjiByLevel)(level)
-  const [ vocab, vocabData ] = useSelector(getVocabByLevel)(level)
+  const [kanji] = useSelector(getKanjiByLevel)(level)
+  const [vocab, vocabData] = useSelector(getVocabByLevel)(level)
 
   const kanjiCards = useSelector(getKanjiCardIDs)(kanji)
   const vocabCards = useSelector(getVocabCardIDs)(vocab)
@@ -39,28 +43,17 @@ function LevelInfo(props) {
 
   return (
     <div className="level">
-      {isFinishedKanji
-        ? 
-          <div className="kanjis">
-            <h3>kanji</h3>
-            {kanjiData.map(kanji => (
-              <div
-                className="kanji"
-                style={{
-                  backgroundColor: kanji.interval_avg
-                    ? intervalToColor(kanji.interval_avg)
-                    : "white"
-                }}
-              >
-                {kanji.fields.Kanji.value}
-              </div>
-            ))
-            }
-          </div>
-        : null}
-      {isFinishedVocab ?
+      <h3>kanji</h3>
+      {isFinishedKanji ? (
+        <div className="kanjis">
+          {kanji.map(kanji => 
+            <Kanji kanji={kanji} />
+          )}
+        </div>
+      ) : null}
+      <h3>vocab</h3>
+      {isFinishedVocab ? (
         <div className="vocabs">
-          <h3>vocab</h3>
           {vocabData.map(vocab => (
             <div
               className="vocab"
@@ -74,8 +67,7 @@ function LevelInfo(props) {
             </div>
           ))}
         </div>
-          : null }
+      ) : null}
     </div>
   )
 }
-

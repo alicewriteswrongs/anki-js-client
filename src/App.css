@@ -27,6 +27,10 @@
 .kanjis,.vocabs {
     max-width: 900px;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .kanji,.vocab {
@@ -34,15 +38,7 @@
     display: inline;
 }
 
-.vocabs {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.vocab:hover {
+.vocab:hover,.kanji:hover {
     box-shadow: 0 0 1px 1px black;
     z-index: 10;
 }

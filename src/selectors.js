@@ -9,6 +9,11 @@ export const getNoteIds = createSelector(
   })
 )
 
+export const getKanji = createSelector(
+  state => state.entities.kanji,
+  allKanji => memoize(kanji => allKanji[kanji])
+)
+
 export const getKanjiByLevel = createSelector(
   state => state.entities.kanji,
   allKanji =>
@@ -59,7 +64,7 @@ export const getKanjiCardIDs = createSelector(
 
 export const getVocabCardIDs = createSelector(
   state => state.entities.vocab,
-  allVocab => 
+  allVocab =>
     memoize(vocabs => {
       if (allVocab) {
         let cardIDs = []
