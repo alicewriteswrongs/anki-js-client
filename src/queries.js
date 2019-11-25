@@ -112,8 +112,8 @@ export const cardInfoRequest = cardIDs => ({
           console.log(card)
           console.log("didnt find")
         }
-        return vocab
       })
+      return vocab
     }
   },
   options: {

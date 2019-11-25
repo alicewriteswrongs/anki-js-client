@@ -1,4 +1,5 @@
 import { createSelector } from "reselect"
+import memoize from "lodash.memoize"
 
 export const getNoteIds = createSelector(
   state => state.entities.notesInDecks,
@@ -8,70 +9,65 @@ export const getNoteIds = createSelector(
   })
 )
 
-export const getKanjiLevels = createSelector(
+export const getKanjiByLevel = createSelector(
   state => state.entities.kanji,
-  allKanji => {
-    if (!allKanji) {
-      return []
-    }
+  allKanji =>
+    memoize(level => {
+      if (allKanji) {
+        const justKanji = Object.keys(allKanji).filter(
+          kanji => allKanji[kanji].tags[1] === level
+        )
+        const kanjiData = justKanji.map(kanji => allKanji[kanji])
 
-    return Object.keys(allKanji).reduce((acc, kanji) => {
-      const entry = allKanji[kanji]
-      const tag = entry.tags[1]
-      if (acc[tag]) {
-        acc[tag].push(entry)
+        return [justKanji, kanjiData]
       } else {
-        acc[tag] = [entry]
+        return []
       }
-      return acc
-    }, {})
-  }
+    })
 )
 
-export const getVocabLevels = createSelector(
+export const getVocabByLevel = createSelector(
   state => state.entities.vocab,
-  allVocab => {
-    if (!allVocab) {
-      return []
-    }
-
-    return Object.keys(allVocab).reduce((acc, vocab) => {
-      const entry = allVocab[vocab]
-      const tag = entry.tags[0]
-      if (acc[tag]) {
-        acc[tag].push(entry)
+  allVocab =>
+    memoize(level => {
+      if (allVocab) {
+        const justVocab = Object.keys(allVocab).filter(
+          vocab => allVocab[vocab].tags[0] === level
+        )
+        const vocabData = justVocab.map(vocab => allVocab[vocab])
+        return [justVocab, vocabData]
       } else {
-        acc[tag] = [entry]
+        return []
       }
-      return acc
-    }, {})
-  }
+    })
 )
 
 export const getKanjiCardIDs = createSelector(
   state => state.entities.kanji,
-  (allKanji) => {
-    if (allKanji) {
-      let cardIDs = []
-      Object.keys(allKanji).forEach(kanji => {
-        cardIDs = cardIDs.concat(allKanji[kanji].cards)
-      })
-      return cardIDs
-    }
-    return null
-  }
+  allKanji =>
+    memoize(kanjis => {
+      if (allKanji) {
+        let cardIDs = []
+        kanjis.forEach(kanji => {
+          cardIDs = cardIDs.concat(allKanji[kanji].cards)
+        })
+        return cardIDs
+      }
+      return null
+    })
 )
 
 export const getVocabCardIDs = createSelector(
   state => state.entities.vocab,
-  (allVocab) => {
-    if (allVocab) {
-      let cardIDs = []
-      Object.keys(allVocab).forEach(vocab => {
-        cardIDs = cardIDs.concat(allVocab[vocab].cards)
-      })
-      return cardIDs
-    }
-    return null
-  }
+  allVocab => 
+    memoize(vocabs => {
+      if (allVocab) {
+        let cardIDs = []
+        vocabs.forEach(vocab => {
+          cardIDs = cardIDs.concat(allVocab[vocab].cards)
+        })
+        return cardIDs
+      }
+      return null
+    })
 )

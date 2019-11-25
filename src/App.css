@@ -25,7 +25,7 @@
 }
 
 .kanjis,.vocabs {
-    max-width: 400px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -35,7 +35,6 @@
 }
 
 .vocabs {
-    max-width: 600px;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -43,11 +42,7 @@
     justify-content: center;
 }
 
-.vocab {
-    margin: 10px;
-}
-
 .vocab:hover {
-    border-bottom: 5px solid green;
-    margin-bottom: 5px;
+    box-shadow: 0 0 1px 1px black;
+    z-index: 10;
 }
