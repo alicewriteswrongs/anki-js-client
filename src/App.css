@@ -36,9 +36,43 @@
 .kanji,.vocab {
     font-size: 60px;
     display: inline;
+    cursor: pointer;
+}
+
+.level-name {
+    cursor: pointer;
 }
 
 .vocab:hover,.kanji:hover {
     box-shadow: 0 0 1px 1px black;
     z-index: 10;
+}
+
+.item-dialog {
+    z-index: 100;
+    max-width: 600px;
+    max-height: 680px;
+    overflow: scroll;
+    position: fixed;
+    top: 15%;
+}
+
+.dialog-title {
+    font-size: 60px;
+    margin: 0 0 20px 0;
+}
+
+.dialog-field {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.dialog-field .label {
+    font-style: italic;
+    margin-right: 10px;
+    width: 33%;
+}
+
+.dialog-field .value {
+    width: 66%;
 }

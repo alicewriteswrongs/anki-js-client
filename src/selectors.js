@@ -31,6 +31,11 @@ export const getKanjiByLevel = createSelector(
     })
 )
 
+export const getVocab = createSelector(
+  state => state.entities.vocab,
+  allVocab => memoize(vocab => allVocab[vocab])
+)
+
 export const getVocabByLevel = createSelector(
   state => state.entities.vocab,
   allVocab =>

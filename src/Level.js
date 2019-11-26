@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { useRequest } from "redux-query-react"
 import { useSelector } from "react-redux"
 
+import Kanji from "./Kanji"
+import Vocab from "./Vocab"
+
 import {
   getKanjiByLevel,
   getKanjiCardIDs,
@@ -9,8 +12,6 @@ import {
   getVocabCardIDs
 } from "./selectors"
 import { cardInfoRequest } from "./queries"
-import { intervalToColor } from "./color"
-import Kanji from './Kanji'
 
 export default function Level(props) {
   const { level } = props
@@ -18,8 +19,10 @@ export default function Level(props) {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className="kanji-level">
-      <h2 onClick={() => setExpanded(!expanded)}>{level}</h2>
+    <div className="level">
+      <h2 className="level-name" onClick={() => setExpanded(!expanded)}>
+        {level}
+      </h2>
       {expanded ? <LevelInfo level={level} /> : null}
     </div>
   )
@@ -29,7 +32,7 @@ function LevelInfo(props) {
   const { level } = props
 
   const [kanji] = useSelector(getKanjiByLevel)(level)
-  const [vocab, vocabData] = useSelector(getVocabByLevel)(level)
+  const [vocab] = useSelector(getVocabByLevel)(level)
 
   const kanjiCards = useSelector(getKanjiCardIDs)(kanji)
   const vocabCards = useSelector(getVocabCardIDs)(vocab)
@@ -46,25 +49,16 @@ function LevelInfo(props) {
       <h3>kanji</h3>
       {isFinishedKanji ? (
         <div className="kanjis">
-          {kanji.map(kanji => 
-            <Kanji kanji={kanji} />
-          )}
+          {kanji.map(kanji => (
+            <Kanji kanji={kanji} key={kanji} />
+          ))}
         </div>
       ) : null}
       <h3>vocab</h3>
       {isFinishedVocab ? (
         <div className="vocabs">
-          {vocabData.map(vocab => (
-            <div
-              className="vocab"
-              style={{
-                backgroundColor: vocab.interval_avg
-                  ? intervalToColor(vocab.interval_avg)
-                  : "white"
-              }}
-            >
-              {vocab.fields.Vocab.value}
-            </div>
+          {vocab.map(vocab => (
+            <Vocab vocab={vocab} key={vocab} />
           ))}
         </div>
       ) : null}
