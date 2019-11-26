@@ -37,13 +37,13 @@ export default function Kanji(props) {
           />
           <DialogField
             item={kanjiData}
-            label="On'yomi"
+            label="音読み"
             fieldName="Reading_On"
             html
           />
           <DialogField
             item={kanjiData}
-            label="Kun'yomi"
+            label="訓読み"
             fieldName="Reading_Kun"
             html
           />
