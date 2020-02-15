@@ -24,54 +24,57 @@
 .item-list {
 }
 
-.kanjis,.vocabs {
-    max-width: 900px;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+.kanjis,
+.vocabs {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.kanji,.vocab {
-    font-size: 60px;
-    display: inline;
-    cursor: pointer;
+.kanji,
+.vocab {
+  font-size: 60px;
+  display: inline;
+  cursor: pointer;
 }
 
 .level-name {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.vocab:hover,.kanji:hover {
-    box-shadow: 0 0 1px 1px black;
-    z-index: 10;
+.vocab:hover,
+.kanji:hover {
+  box-shadow: 0 0 1px 1px black;
+  z-index: 10;
 }
 
 .item-dialog {
-    z-index: 100;
-    max-width: 600px;
-    max-height: 680px;
-    overflow: scroll;
-    position: fixed;
-    top: 15%;
+  z-index: 100;
+  max-width: 600px;
+  max-height: 680px;
+  overflow: scroll;
+  position: fixed;
+  top: 15%;
 }
 
 .dialog-title {
-    font-size: 60px;
-    margin: 0 0 20px 0;
+  font-size: 60px;
+  margin: 0 0 20px 0;
 }
 
 .dialog-field {
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
 }
 
 .dialog-field .label {
-    margin-right: 10px;
-    width: 33%;
+  margin-right: 10px;
+  width: 33%;
 }
 
 .dialog-field .value {
-    width: 66%;
+  width: 66%;
 }
