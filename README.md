@@ -27,3 +27,6 @@ npm start
 ```
 
 and that's about it.
+
+note that you have to have anki open, and you have to have the AnkiConnect
+add-on already installed.
