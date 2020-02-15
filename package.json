@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fmt": "prettier --write --no-semi src/**/*.js"
+    "fmt": "prettier --write --no-semi src/**/*.js src/**/*.css"
   },
   "eslintConfig": {
     "extends": "react-app"
