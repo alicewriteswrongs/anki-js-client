@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  max-width: 900px;
+  margin: auto;
 }
 
 .App-logo {
@@ -26,8 +27,6 @@
 
 .kanjis,
 .vocabs {
-  max-width: 900px;
-  margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -41,8 +40,26 @@
   cursor: pointer;
 }
 
+.level-header {
+  margin: 0.8em 0;
+  display: flex;
+  align-items: center;
+}
+
+.level-header .refresh {
+  cursor: pointer;
+  color: grey;
+  font-size: 12px;
+  margin-left: 5px;
+}
+.level-header .refresh:hover {
+  color: black;
+}
+
 .level-name {
   cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .vocab:hover,
