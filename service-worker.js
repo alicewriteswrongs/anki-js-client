@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/anki-js-client/precache-manifest.968df8fe694ffcea607566cec03a3eaa.js"
+  "/anki-js-client/precache-manifest.846e3eeeef616ad491b92560f9d80f15.js"
 );
 
 self.addEventListener('message', (event) => {
