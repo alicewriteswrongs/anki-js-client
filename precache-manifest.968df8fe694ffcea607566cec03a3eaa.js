@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "671ae394c2cc6af9228c6f9dbbf9a3ab",
+    "revision": "72a1cf32c4035f0c04744f8c049c21fd",
     "url": "/anki-js-client/index.html"
   },
   {
