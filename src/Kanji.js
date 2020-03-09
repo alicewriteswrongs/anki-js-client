@@ -49,7 +49,7 @@ export default function Kanji(props) {
           />
           <DialogField
             item={kanjiData}
-            label="radicals"
+            label="部首"
             fieldName="Radicals_Names"
           />
           <DialogField
