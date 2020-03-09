@@ -64,18 +64,18 @@
 }
 
 .sub-level-heading {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .sub-level-heading * {
-    display: inline;
-    font-size: 50px;
+  display: inline;
+  font-size: 50px;
 }
 
 .sub-level-heading .num-learned {
-    font-size: 14px;
-    color: grey;
-    margin-left: 5px;
+  font-size: 14px;
+  color: grey;
+  margin-left: 5px;
 }
 
 .vocab:hover,
