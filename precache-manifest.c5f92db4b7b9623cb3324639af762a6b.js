@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4e6239dd27d24494c7bc76feb7811a2a",
+    "revision": "efd0192c7898de2e68d4f794e99b0d0e",
     "url": "/anki-js-client/index.html"
   },
   {
-    "revision": "dd5d832f681697aff2d5",
-    "url": "/anki-js-client/static/css/main.3c88dcf5.chunk.css"
+    "revision": "b663f38a1ad7ec4a72e5",
+    "url": "/anki-js-client/static/css/main.3fc384c5.chunk.css"
   },
   {
     "revision": "d8813c8979b335482db7",
     "url": "/anki-js-client/static/js/2.4b4322ee.chunk.js"
   },
   {
-    "revision": "dd5d832f681697aff2d5",
+    "revision": "b663f38a1ad7ec4a72e5",
     "url": "/anki-js-client/static/js/main.38bbd646.chunk.js"
   },
   {
