@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "csv": "^5.1.3",
+    "gh-pages": "^2.2.0",
     "ramda": "^0.26.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -20,7 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fmt": "prettier --write --no-semi src/**/*.js src/**/*.css"
+    "fmt": "prettier --write --no-semi src/**/*.js src/**/*.css",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
