@@ -2,6 +2,7 @@
   "name": "kanji",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://aliceriot.github.io/anki-js-client",
   "dependencies": {
     "csv": "^5.1.3",
     "gh-pages": "^2.2.0",
