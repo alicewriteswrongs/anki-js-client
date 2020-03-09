@@ -37,15 +37,24 @@ function LevelInfo(props) {
   const kanjiCards = useSelector(getKanjiCardIDs)(kanji)
   const vocabCards = useSelector(getVocabCardIDs)(vocab)
 
-  const [{ isFinished: isFinishedKanji }] = useRequest(
+  const [{ isFinished: isFinishedKanji }, refreshKanji] = useRequest(
     kanjiCards ? cardInfoRequest(kanjiCards) : null
   )
-  const [{ isFinished: isFinishedVocab }] = useRequest(
+  const [{ isFinished: isFinishedVocab }, refreshVocab] = useRequest(
     vocabCards ? cardInfoRequest(vocabCards) : null
   )
 
+  const refreshFunc = () => {
+    refreshKanji()
+    refreshVocab()
+  }
+
   return (
     <div className="level">
+      <div class="ref-button" onClick={refreshFunc}>
+        refresh
+      </div>
+
       <h3>kanji</h3>
       {isFinishedKanji ? (
         <div className="kanjis">
