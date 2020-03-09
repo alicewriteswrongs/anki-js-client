@@ -15,18 +15,23 @@ you, but for now the deck is private :)
 
 ## running it
 
+the app is available at <https://aliceriot.github.io/anki-js-client/>.
+note that it makes request to your localhost, so you must have anki open
+and running on your computer with AnkiConnect installed.
+
+to run it locally for development and so on just
+
+```
+yarn install
+yarn start
+```
+
 the app is built using
 [create-react-app](https://github.com/facebook/create-react-app) because
 things are just mad easy that way.
 
-accordingly you
+to deploy do
 
-```js
-yarn install
-npm start
 ```
-
-and that's about it.
-
-note that you have to have anki open, and you have to have the AnkiConnect
-add-on already installed.
+yarn deploy
+```
