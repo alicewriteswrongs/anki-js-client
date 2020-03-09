@@ -31,6 +31,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 2em;
 }
 
 .kanji,
@@ -60,6 +61,21 @@
   cursor: pointer;
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.sub-level-heading {
+    margin-bottom: 10px;
+}
+
+.sub-level-heading * {
+    display: inline;
+    font-size: 50px;
+}
+
+.sub-level-heading .num-learned {
+    font-size: 14px;
+    color: grey;
+    margin-left: 5px;
 }
 
 .vocab:hover,

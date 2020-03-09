@@ -18,8 +18,8 @@ export default function Level(props) {
 
   const [expanded, setExpanded] = useState(false)
 
-  const [kanji] = useSelector(getKanjiByLevel)(level)
-  const [vocab] = useSelector(getVocabByLevel)(level)
+  const [kanji, kanjiData] = useSelector(getKanjiByLevel)(level)
+  const [vocab, vocabData] = useSelector(getVocabByLevel)(level)
 
   const kanjiCards = useSelector(getKanjiCardIDs)(kanji)
   const vocabCards = useSelector(getVocabCardIDs)(vocab)
@@ -36,6 +36,13 @@ export default function Level(props) {
     refreshVocab()
   }
 
+  const numLearnedKanji = isFinishedKanji
+    ? kanjiData.filter(kanji => kanji.interval_avg !== 0).length
+    : 0
+  const numLearnedVocab = isFinishedVocab
+    ? vocabData.filter(vocab => vocab.interval_avg !== 0).length
+    : 0
+
   return (
     <div className="level">
       <div className="level-header">
@@ -50,7 +57,14 @@ export default function Level(props) {
       </div>
       {expanded ? (
         <div className="level">
-          <h3>kanji</h3>
+          <div className="sub-level-heading">
+            <h3>漢字</h3>
+            {isFinishedKanji ? (
+              <div className="num-learned">
+                {numLearnedKanji} / {kanjiData.length}
+              </div>
+            ) : null}
+          </div>
           {isFinishedKanji ? (
             <div className="kanjis">
               {kanji.map(kanji => (
@@ -58,7 +72,14 @@ export default function Level(props) {
               ))}
             </div>
           ) : null}
-          <h3>vocab</h3>
+          <div className="sub-level-heading">
+            <h3>語彙</h3>
+            {isFinishedVocab ? (
+              <div className="num-learned">
+                {numLearnedVocab} / {vocabData.length}
+              </div>
+            ) : null}
+          </div>
           {isFinishedVocab ? (
             <div className="vocabs">
               {vocab.map(vocab => (
