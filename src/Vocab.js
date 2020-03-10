@@ -1,102 +1,78 @@
 import React, { useState } from "react"
-import { useSelector } from "react-redux"
 
 import DialogField from "./DialogField"
 import Dialog from "./Dialog"
 
-import { getVocab } from "./selectors"
 import { intervalToColor } from "./color"
 
 export default function Vocab(props) {
   const { vocab } = props
 
-  const vocabData = useSelector(getVocab)(vocab)
-
   const [showDialog, setShowDialog] = useState(false)
 
-  return vocabData ? (
+  return vocab ? (
     <React.Fragment>
       <div
         className="vocab"
         onClick={() => setShowDialog(true)}
         key={vocab}
         style={{
-          backgroundColor: vocabData.interval_avg
-            ? intervalToColor(vocabData.interval_avg)
+          backgroundColor: vocab.interval_avg
+            ? intervalToColor(vocab.interval_avg)
             : "white"
         }}
       >
-        {vocabData.fields.Vocab.value}
+        {vocab.fields.Characters.value}
       </div>
       {showDialog ? (
         <Dialog hide={() => setShowDialog(false)}>
-          <h2 className="dialog-title">{vocabData.fields.Vocab.value}</h2>
-          <DialogField item={vocabData} label="meaning" fieldName="Meaning" />
+          <h2 className="dialog-title">{vocab.fields.Characters.value}</h2>
+          <DialogField item={vocab} label="meaning" fieldName="Meaning" />
           <DialogField
-            item={vocabData}
+            item={vocab}
             label="part of speech"
-            fieldName="Speech-Type"
+            fieldName="Speech_Type"
           />
+          <DialogField item={vocab} label="reading" fieldName="Reading" html />
           <DialogField
-            item={vocabData}
-            label="reading"
+            item={vocab}
+            label="発音"
             fieldName="Reading"
             html
           />
           <DialogField
-            item={vocabData}
-            label="発音"
-            fieldName="Pronunciation"
-            html
-          />
-          <DialogField
-            item={vocabData}
+            item={vocab}
             label="meaning mnemonic"
-            fieldName="Meaning-Exp"
+            fieldName="Meaning_Mnemonic"
             html
           />
           <DialogField
-            item={vocabData}
+            item={vocab}
             label="reading mnemonic"
-            fieldName="Reading-Exp"
+            fieldName="Reading_Mnemonic"
             html
           />
           <DialogField
-            item={vocabData}
+            item={vocab}
             label="日本語"
-            fieldName="Context1-jp"
+            fieldName="Context_jp"
             html
           />
+          <DialogField item={vocab} label="英語" fieldName="Context_en" html />
           <DialogField
-            item={vocabData}
-            label="英語"
-            fieldName="Context1-en"
-            html
-          />
-          <DialogField
-            item={vocabData}
+            item={vocab}
             label="日本語"
-            fieldName="Context2-jp"
+            fieldName="Context_jp_2"
             html
           />
+          <DialogField item={vocab} label="英語" fieldName="Context_en_2" html />
           <DialogField
-            item={vocabData}
-            label="英語"
-            fieldName="Context2-en"
-            html
-          />
-          <DialogField
-            item={vocabData}
+            item={vocab}
             label="日本語"
-            fieldName="Context3-jp"
+            fieldName="Context_jp_3"
             html
           />
-          <DialogField
-            item={vocabData}
-            label="英語"
-            fieldName="Context3-en"
-            html
-          />
+          <DialogField item={vocab} label="英語" fieldName="Context_en_3" html />
         </Dialog>
       ) : null}
     </React.Fragment>
