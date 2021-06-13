@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11667cad3b78b7af5ae267c02011b82d",
+    "revision": "4328561d11e57ae335b3aa09e2903f48",
     "url": "/anki-js-client/index.html"
   },
   {
-    "revision": "80718b51017ac51e4551",
+    "revision": "4818038b530bbf069692",
     "url": "/anki-js-client/static/css/main.2f6ae9e8.chunk.css"
   },
   {
-    "revision": "d8813c8979b335482db7",
-    "url": "/anki-js-client/static/js/2.4b4322ee.chunk.js"
+    "revision": "ce2efa5cc49a066c0022",
+    "url": "/anki-js-client/static/js/2.aaaefc2e.chunk.js"
   },
   {
-    "revision": "80718b51017ac51e4551",
-    "url": "/anki-js-client/static/js/main.500a9880.chunk.js"
+    "revision": "4818038b530bbf069692",
+    "url": "/anki-js-client/static/js/main.c3747032.chunk.js"
   },
   {
     "revision": "9be938431f2863efeb99",
