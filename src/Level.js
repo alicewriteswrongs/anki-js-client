@@ -10,13 +10,6 @@ export default function Level(props) {
 
   const [expanded, setExpanded] = useState(false)
 
-  // const numLearnedKanji = isFinishedKanji
-  //   ? kanjiData.filter(kanji => kanji.interval_avg !== 0).length
-  //   : 0
-  // const numLearnedVocab = isFinishedVocab
-  //   ? vocabData.filter(vocab => vocab.interval_avg !== 0).length
-  //   : 0
-
   const [kanji, setKanji] = useState(null)
   const [vocab, setVocab] = useState(null)
   const [kanjiLearned, setKanjiLearned] = useState(null)
