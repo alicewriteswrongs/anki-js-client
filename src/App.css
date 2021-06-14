@@ -44,14 +44,14 @@
 .progress-background {
   height: 5px;
   width: 100%;
-  background-color: gray;
+  background-color: #dadada;
   position: relative;
   margin-bottom: 10px;
 }
 
 .progress-indicator {
   height: 5px;
-  background-color: green;
+  background-color: #0cff0c;
   position: absolute;
   top: 0;
 }
@@ -83,10 +83,6 @@
   cursor: pointer;
   font-size: 1.5em;
   font-weight: bold;
-}
-
-.sub-level-heading {
-  margin-bottom: 10px;
 }
 
 .sub-level-heading * {

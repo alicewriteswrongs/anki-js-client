@@ -62,13 +62,13 @@ export default function Level(props) {
         <div className="level">
           <div className="sub-level-heading">
             <h3>漢字</h3>
-            {kanjiLearned ? (
+            {kanji ? (
               <div className="num-learned">
                 {kanjiLearned} / {kanji.length}
               </div>
             ) : null}
           </div>
-          {kanjiLearned ? (
+          {kanji ? (
             <div className="progress">
               <div className="progress-background">
                 <div
@@ -89,13 +89,13 @@ export default function Level(props) {
           ) : null}
           <div className="sub-level-heading">
             <h3>語彙</h3>
-            {vocabLearned ? (
+            {vocab ? (
               <div className="num-learned">
                 {vocabLearned} / {vocab.length}
               </div>
             ) : null}
           </div>
-          {vocabLearned ? (
+          {vocab ? (
             <div className="progress">
               <div className="progress-background">
                 <div
