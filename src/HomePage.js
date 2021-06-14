@@ -3,7 +3,6 @@ import { times } from "ramda"
 
 import Level from "./Level"
 
-import db from "./db"
 import { buildDB } from './queries'
 
 const levels = times(n => n + 1, 60)

@@ -51,7 +51,7 @@ export default function Level(props) {
       }
     }
     foo()
-  }, [expanded])
+  }, [expanded, level])
 
   return (
     <div className="level">
