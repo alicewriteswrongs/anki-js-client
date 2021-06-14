@@ -5,6 +5,11 @@ import Vocab from "./Vocab"
 
 import db from "./db"
 
+const percentage = (learned, toLearn) =>
+  Math.floor(
+    (learned / toLearn) * 100
+  )
+
 export default function Level(props) {
   const { level } = props
 
@@ -70,6 +75,13 @@ export default function Level(props) {
               </div>
             ) : null}
           </div>
+          { kanjiLearned ? (
+            <div className="progress">
+              <div className="progress-background">
+                <div style={{ width: `${percentage(kanjiLearned, kanji.length)}%` }} className="progress-indicator" />
+              </div>
+            </div>
+          ) : null }
           {kanji ? (
             <div className="kanjis">
               {kanji.map(kanji => (
@@ -85,6 +97,13 @@ export default function Level(props) {
               </div>
             ) : null}
           </div>
+          { vocabLearned ? (
+            <div className="progress">
+              <div className="progress-background">
+                <div style={{ width: `${percentage(vocabLearned, vocab.length)}%` }} className="progress-indicator" />
+              </div>
+            </div>
+          ) : null }
           {vocab ? (
             <div className="vocabs">
               {vocab.map(vocab => (
