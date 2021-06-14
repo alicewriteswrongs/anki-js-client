@@ -3,37 +3,38 @@ import { times } from "ramda"
 
 import Level from "./Level"
 
-import { buildDB } from './queries'
+import { buildDB } from "./queries"
 
 const levels = times(n => n + 1, 60)
 
 export default function HomePage() {
   const [dataFetched, setDataFetched] = useState(false)
-  const [fetchingLog, setFetchingLog] = useState([
-    "fetching data..."
-  ])
+  const [fetchingLog, setFetchingLog] = useState(["fetching data..."])
 
   useEffect(() => {
-    buildDB(
-      update =>
-      setFetchingLog(cur => [...cur, update])).then(() => {
-        setDataFetched(true)
-      })
+    buildDB(update => setFetchingLog(cur => [...cur, update])).then(() => {
+      setDataFetched(true)
+    })
   }, [])
 
   return (
     <div className="App">
-      { dataFetched ? (
+      {dataFetched ? (
         <div className="item-list">
           {levels.map(level => (
             <Level level={level} key={level} />
           ))}
         </div>
-      ) :
-      <div className="data-fetch-log">
-        { fetchingLog.map(entry => <span>{entry}<br/></span>) }
-      </div>
-      }
+      ) : (
+        <div className="data-fetch-log">
+          {fetchingLog.map(entry => (
+            <span>
+              {entry}
+              <br />
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

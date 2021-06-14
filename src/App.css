@@ -23,10 +23,10 @@
 }
 
 .data-fetch-log {
-    margin-top: 100px;
-    margin: auto;
-    width: 40%;
-    font-family: monospace;
+  margin-top: 100px;
+  margin: auto;
+  width: 40%;
+  font-family: monospace;
 }
 
 .item-list {
@@ -42,18 +42,18 @@
 }
 
 .progress-background {
-    height: 5px;
-    width: 100%;
-    background-color: gray;
-    position: relative;
+  height: 5px;
+  width: 100%;
+  background-color: gray;
+  position: relative;
   margin-bottom: 10px;
 }
 
 .progress-indicator {
-    height: 5px;
-    background-color: green;
-    position: absolute;
-    top: 0;
+  height: 5px;
+  background-color: green;
+  position: absolute;
+  top: 0;
 }
 
 .kanji,

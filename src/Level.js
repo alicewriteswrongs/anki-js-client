@@ -5,10 +5,7 @@ import Vocab from "./Vocab"
 
 import db from "./db"
 
-const percentage = (learned, toLearn) =>
-  Math.floor(
-    (learned / toLearn) * 100
-  )
+const percentage = (learned, toLearn) => Math.floor((learned / toLearn) * 100)
 
 export default function Level(props) {
   const { level } = props
@@ -59,11 +56,7 @@ export default function Level(props) {
         <div class="level-name" onClick={() => setExpanded(!expanded)}>
           {level}
         </div>
-        {expanded ? (
-          <div class="refresh">
-            リフレッシュ
-          </div>
-        ) : null}
+        {expanded ? <div class="refresh">リフレッシュ</div> : null}
       </div>
       {expanded ? (
         <div className="level">
@@ -75,13 +68,18 @@ export default function Level(props) {
               </div>
             ) : null}
           </div>
-          { kanjiLearned ? (
+          {kanjiLearned ? (
             <div className="progress">
               <div className="progress-background">
-                <div style={{ width: `${percentage(kanjiLearned, kanji.length)}%` }} className="progress-indicator" />
+                <div
+                  style={{
+                    width: `${percentage(kanjiLearned, kanji.length)}%`
+                  }}
+                  className="progress-indicator"
+                />
               </div>
             </div>
-          ) : null }
+          ) : null}
           {kanji ? (
             <div className="kanjis">
               {kanji.map(kanji => (
@@ -97,13 +95,18 @@ export default function Level(props) {
               </div>
             ) : null}
           </div>
-          { vocabLearned ? (
+          {vocabLearned ? (
             <div className="progress">
               <div className="progress-background">
-                <div style={{ width: `${percentage(vocabLearned, vocab.length)}%` }} className="progress-indicator" />
+                <div
+                  style={{
+                    width: `${percentage(vocabLearned, vocab.length)}%`
+                  }}
+                  className="progress-indicator"
+                />
               </div>
             </div>
-          ) : null }
+          ) : null}
           {vocab ? (
             <div className="vocabs">
               {vocab.map(vocab => (

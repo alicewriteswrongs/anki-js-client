@@ -34,12 +34,7 @@ export default function Vocab(props) {
             fieldName="Speech_Type"
           />
           <DialogField item={vocab} label="reading" fieldName="Reading" html />
-          <DialogField
-            item={vocab}
-            label="発音"
-            fieldName="Reading"
-            html
-          />
+          <DialogField item={vocab} label="発音" fieldName="Reading" html />
           <DialogField
             item={vocab}
             label="meaning mnemonic"
@@ -65,14 +60,24 @@ export default function Vocab(props) {
             fieldName="Context_jp_2"
             html
           />
-          <DialogField item={vocab} label="英語" fieldName="Context_en_2" html />
+          <DialogField
+            item={vocab}
+            label="英語"
+            fieldName="Context_en_2"
+            html
+          />
           <DialogField
             item={vocab}
             label="日本語"
             fieldName="Context_jp_3"
             html
           />
-          <DialogField item={vocab} label="英語" fieldName="Context_en_3" html />
+          <DialogField
+            item={vocab}
+            label="英語"
+            fieldName="Context_en_3"
+            html
+          />
         </Dialog>
       ) : null}
     </React.Fragment>

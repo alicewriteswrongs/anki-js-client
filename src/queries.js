@@ -48,7 +48,7 @@ const bulkCardInfoRequest = async cardIDs => {
   return json
 }
 
-export const buildDB = async (log) => {
+export const buildDB = async log => {
   const noteIDs = await deckInfoRequest(JAPANESE_DECK_NAME)
   const notes = await bulkNoteInfoRequest(noteIDs)
 
@@ -85,13 +85,13 @@ export const buildDB = async (log) => {
   const kanjiCardIDs = kanjiNotes.flatMap(note => note.cards)
   const vocabCardIDs = vocabNotes.flatMap(note => note.cards)
 
-  log('fetching kanji info...')
+  log("fetching kanji info...")
 
   // fetch info for kanji cards
   for (var i = 0; i <= kanjiCardIDs.length; i += 500) {
     const kanjiCards = await bulkCardInfoRequest(kanjiCardIDs.slice(i, i + 500))
 
-    log(`${ Math.floor((i / kanjiCardIDs.length) * 100)}%`)
+    log(`${Math.floor((i / kanjiCardIDs.length) * 100)}%`)
 
     kanjiCards.forEach(card => {
       const entry = kanjiNotesMap[card.fields.Characters.value]
@@ -112,12 +112,12 @@ export const buildDB = async (log) => {
 
   db.kanji.bulkPut(Object.values(kanjiNotesMap))
 
-  log('fetching vocab info...')
+  log("fetching vocab info...")
 
   // fetch info for vocab cards
   for (var i = 0; i <= vocabCardIDs.length; i += 500) {
     const vocabCards = await bulkCardInfoRequest(vocabCardIDs.slice(i, i + 500))
-    log(`${Math.floor( ( i / vocabCardIDs.length) * 100)}%`)
+    log(`${Math.floor((i / vocabCardIDs.length) * 100)}%`)
 
     vocabCards.forEach(card => {
       const entry = vocabNotesMap[card.fields.Characters.value]
@@ -136,7 +136,7 @@ export const buildDB = async (log) => {
     })
   }
 
-  log('done!')
+  log("done!")
 
   db.vocab.bulkPut(Object.values(vocabNotesMap))
 }
