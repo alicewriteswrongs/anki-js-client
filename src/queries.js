@@ -15,10 +15,16 @@ const JAPANESE_DECK_NAME = "日本語"
 const makeAnkiRequest = async body => {
   const response = await fetch(ANKI_URL, {
     method: "POST",
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   })
   const { result } = await response.json()
   return result
+}
+
+const requestAnkiPermission = async () => {
+  await makeAnkiRequest(
+    ankiRequestBody("requestPermission")
+  )
 }
 
 const deckInfoRequest = async deckName => {
@@ -49,6 +55,8 @@ const bulkCardInfoRequest = async cardIDs => {
 }
 
 export const buildDB = async log => {
+  await requestAnkiPermission()
+
   const noteIDs = await deckInfoRequest(JAPANESE_DECK_NAME)
   const notes = await bulkNoteInfoRequest(noteIDs)
 
