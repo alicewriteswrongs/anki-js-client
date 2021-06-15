@@ -1,21 +1,20 @@
 {
   "files": {
-    "main.css": "/anki-js-client/static/css/main.2f6ae9e8.chunk.css",
-    "main.js": "/anki-js-client/static/js/main.c3747032.chunk.js",
-    "main.js.map": "/anki-js-client/static/js/main.c3747032.chunk.js.map",
-    "runtime-main.js": "/anki-js-client/static/js/runtime-main.45e8a1de.js",
-    "runtime-main.js.map": "/anki-js-client/static/js/runtime-main.45e8a1de.js.map",
-    "static/js/2.aaaefc2e.chunk.js": "/anki-js-client/static/js/2.aaaefc2e.chunk.js",
-    "static/js/2.aaaefc2e.chunk.js.map": "/anki-js-client/static/js/2.aaaefc2e.chunk.js.map",
+    "main.css": "/anki-js-client/static/css/main.8da2311b.chunk.css",
+    "main.js": "/anki-js-client/static/js/main.9aee22e3.chunk.js",
+    "main.js.map": "/anki-js-client/static/js/main.9aee22e3.chunk.js.map",
+    "runtime-main.js": "/anki-js-client/static/js/runtime-main.3d4d0dd5.js",
+    "runtime-main.js.map": "/anki-js-client/static/js/runtime-main.3d4d0dd5.js.map",
+    "static/js/2.95aa04b4.chunk.js": "/anki-js-client/static/js/2.95aa04b4.chunk.js",
+    "static/js/2.95aa04b4.chunk.js.map": "/anki-js-client/static/js/2.95aa04b4.chunk.js.map",
     "index.html": "/anki-js-client/index.html",
-    "precache-manifest.631f752c16e36c72621842cc3d0d48a5.js": "/anki-js-client/precache-manifest.631f752c16e36c72621842cc3d0d48a5.js",
-    "service-worker.js": "/anki-js-client/service-worker.js",
-    "static/css/main.2f6ae9e8.chunk.css.map": "/anki-js-client/static/css/main.2f6ae9e8.chunk.css.map"
+    "static/css/main.8da2311b.chunk.css.map": "/anki-js-client/static/css/main.8da2311b.chunk.css.map",
+    "static/js/2.95aa04b4.chunk.js.LICENSE.txt": "/anki-js-client/static/js/2.95aa04b4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.45e8a1de.js",
-    "static/js/2.aaaefc2e.chunk.js",
-    "static/css/main.2f6ae9e8.chunk.css",
-    "static/js/main.c3747032.chunk.js"
+    "static/js/runtime-main.3d4d0dd5.js",
+    "static/js/2.95aa04b4.chunk.js",
+    "static/css/main.8da2311b.chunk.css",
+    "static/js/main.9aee22e3.chunk.js"
   ]
 }
