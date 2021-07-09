@@ -5,19 +5,17 @@
   "homepage": "https://aliceriot.github.io/anki-js-client",
   "dependencies": {
     "dexie": "^3.0.3",
+    "esbuild": "^0.12.15",
     "gh-pages": "3.2.0",
     "prettier": "^1.19.1",
     "ramda": "^0.27.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-onclickoutside": "^6.9.0",
-    "react-scripts": "^4.0.3"
+    "react-onclickoutside": "^6.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "./dev.sh",
+    "build": "./build.sh",
     "fmt": "prettier --write --no-semi src/**/*.js src/**/*.css",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
