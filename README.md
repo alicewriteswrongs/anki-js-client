@@ -27,8 +27,7 @@ yarn start
 ```
 
 the app is built using
-[create-react-app](https://github.com/facebook/create-react-app) because
-things are just mad easy that way.
+[esbuild](https://esbuild.github.io/).
 
 to deploy do
 
