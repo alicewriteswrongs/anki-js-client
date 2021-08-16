@@ -4,21 +4,27 @@ import Kanji from "./Kanji"
 import Vocab from "./Vocab"
 
 import db from "./db"
+import { IKanji, IVocab } from "./note"
 
-const percentage = (learned, toLearn) => Math.floor((learned / toLearn) * 100)
+const percentage = (learned: number, toLearn: number) =>
+  Math.floor((learned / toLearn) * 100)
 
-export default function Level(props) {
+interface Props {
+  level: number
+}
+
+export default function Level(props: Props) {
   const { level } = props
 
   const [expanded, setExpanded] = useState(false)
 
-  const [kanji, setKanji] = useState(null)
-  const [vocab, setVocab] = useState(null)
-  const [kanjiLearned, setKanjiLearned] = useState(null)
-  const [vocabLearned, setVocabLearned] = useState(null)
+  const [kanji, setKanji] = useState<IKanji[]>([])
+  const [vocab, setVocab] = useState<IVocab[]>([])
+  const [kanjiLearned, setKanjiLearned] = useState(0)
+  const [vocabLearned, setVocabLearned] = useState(0)
 
   useEffect(() => {
-    const foo = async () => {
+    const loadData = async () => {
       if (expanded) {
         const kanji = await db.kanji
           .where("level")
@@ -47,16 +53,16 @@ export default function Level(props) {
         setVocabLearned(vocabLearned)
       }
     }
-    foo()
+    loadData()
   }, [expanded, level])
 
   return (
     <div className="level">
       <div className="level-header">
-        <div class="level-name" onClick={() => setExpanded(!expanded)}>
+        <div className="level-name" onClick={() => setExpanded(!expanded)}>
           {level}
         </div>
-        {expanded ? <div class="refresh">リフレッシュ</div> : null}
+        {expanded ? <div className="refresh">リフレッシュ</div> : null}
       </div>
       {expanded ? (
         <div className="level">

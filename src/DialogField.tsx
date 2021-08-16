@@ -1,6 +1,14 @@
 import React from "react"
+import { IKanji, IVocab } from "./note"
 
-export default function DialogField(props) {
+interface Props {
+  item: IVocab | IKanji
+  label: string
+  fieldName: string
+  html?: boolean
+}
+
+export default function DialogField(props: Props) {
   const { item, label, fieldName, html } = props
 
   return (

@@ -4,8 +4,13 @@ import DialogField from "./DialogField"
 import Dialog from "./Dialog"
 
 import { intervalToColor } from "./color"
+import { IKanji } from "./note"
 
-export default function Kanji(props) {
+interface Props {
+  kanji: IKanji
+}
+
+export default function Kanji(props: Props) {
   const { kanji } = props
 
   const [showDialog, setShowDialog] = useState(false)

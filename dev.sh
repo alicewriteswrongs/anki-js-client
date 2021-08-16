@@ -10,8 +10,7 @@ cp src/index.css build
 # run it!
 ./node_modules/.bin/esbuild \
     --bundle \
-    --loader:.js=jsx \
     --outfile=build/index.js \
     --servedir=build \
     --sourcemap \
-    src/index.js
+    src/index.tsx

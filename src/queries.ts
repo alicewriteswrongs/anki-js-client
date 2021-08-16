@@ -1,10 +1,18 @@
 import { mean } from "ramda"
 
 import db from "./db"
+import { IKanji, IVocab } from "./note"
 
 const ANKI_URL = "http://127.0.0.1:8765"
 
-const ankiRequestBody = (action, params = {}) => ({
+interface AnkiRequestBody {
+  action: string
+  // TODO type params better
+  params: Record<string, any>
+  version: 6
+}
+
+const ankiRequestBody = (action: string, params = {}): AnkiRequestBody => ({
   action,
   params,
   version: 6
@@ -12,7 +20,7 @@ const ankiRequestBody = (action, params = {}) => ({
 
 const JAPANESE_DECK_NAME = "日本語"
 
-const makeAnkiRequest = async body => {
+const makeAnkiRequest = async (body: AnkiRequestBody) => {
   const response = await fetch(ANKI_URL, {
     method: "POST",
     body: JSON.stringify(body)
@@ -25,7 +33,7 @@ const requestAnkiPermission = async () => {
   await makeAnkiRequest(ankiRequestBody("requestPermission"))
 }
 
-const deckInfoRequest = async deckName => {
+const deckInfoRequest = async (deckName: string) => {
   const json = await makeAnkiRequest(
     ankiRequestBody("findNotes", {
       query: `deck:${deckName}`
@@ -34,7 +42,7 @@ const deckInfoRequest = async deckName => {
   return json
 }
 
-const bulkNoteInfoRequest = async noteIds => {
+const bulkNoteInfoRequest = async (noteIds: number[]) => {
   const json = await makeAnkiRequest(
     ankiRequestBody("notesInfo", {
       notes: noteIds
@@ -43,7 +51,7 @@ const bulkNoteInfoRequest = async noteIds => {
   return json
 }
 
-const bulkCardInfoRequest = async cardIDs => {
+const bulkCardInfoRequest = async (cardIDs: number[]) => {
   const json = await makeAnkiRequest(
     ankiRequestBody("cardsInfo", {
       cards: cardIDs
@@ -52,44 +60,54 @@ const bulkCardInfoRequest = async cardIDs => {
   return json
 }
 
-export const buildDB = async log => {
+interface Logger {
+  (log: string): void
+}
+
+export const buildDB = async (log: Logger) => {
   await requestAnkiPermission()
 
   const noteIDs = await deckInfoRequest(JAPANESE_DECK_NAME)
   const notes = await bulkNoteInfoRequest(noteIDs)
 
   // filter the notes into two arrays
-  const kanjiNotes = notes.filter(note => note.tags.includes("kanji"))
-  const vocabNotes = notes.filter(note => note.tags.includes("Vocabulary"))
+  const kanjiNotes = notes.filter((note: IKanji) => note.tags.includes("kanji"))
+  const vocabNotes = notes.filter((note: IVocab) =>
+    note.tags.includes("Vocabulary")
+  )
 
   log(`found ${kanjiNotes.length} kanji...`)
   log(`found ${vocabNotes.length} vocab...`)
 
   // build a map from kanji -> fields
-  const kanjiNotesMap = {}
-  kanjiNotes.forEach(note => {
+  const kanjiNotesMap: Record<string, IKanji> = {}
+  kanjiNotes.forEach((note: any) => {
     const kanji = note.fields["Characters"].value
     kanjiNotesMap[kanji] = note
     kanjiNotesMap[kanji].kanji = kanji
     kanjiNotesMap[kanji].level = Number(
-      note.tags.find(entry => entry.match("Lesson")).replace("Lesson_", "")
+      note.tags
+        .find((entry: string) => entry.match("Lesson"))
+        .replace("Lesson_", "")
     )
   })
 
   // and another from vocab -> fields
-  const vocabNotesMap = {}
-  vocabNotes.forEach(note => {
+  const vocabNotesMap: Record<string, IVocab> = {}
+  vocabNotes.forEach((note: any) => {
     const vocab = note.fields.Characters.value
     vocabNotesMap[vocab] = note
     vocabNotesMap[vocab].vocab = vocab
     vocabNotesMap[vocab].level = Number(
-      note.tags.find(entry => entry.match("Lesson")).replace("Lesson_", "")
+      note.tags
+        .find((entry: string) => entry.match("Lesson"))
+        .replace("Lesson_", "")
     )
   })
 
   // grab card IDs
-  const kanjiCardIDs = kanjiNotes.flatMap(note => note.cards)
-  const vocabCardIDs = vocabNotes.flatMap(note => note.cards)
+  const kanjiCardIDs = kanjiNotes.flatMap((note: IKanji) => note.cards)
+  const vocabCardIDs = vocabNotes.flatMap((note: IVocab) => note.cards)
 
   log("fetching kanji info...")
 
@@ -99,7 +117,7 @@ export const buildDB = async log => {
 
     log(`${Math.floor((i / kanjiCardIDs.length) * 100)}%`)
 
-    kanjiCards.forEach(card => {
+    kanjiCards.forEach((card: any) => {
       const entry = kanjiNotesMap[card.fields.Characters.value]
 
       if (entry) {
@@ -125,7 +143,7 @@ export const buildDB = async log => {
     const vocabCards = await bulkCardInfoRequest(vocabCardIDs.slice(i, i + 500))
     log(`${Math.floor((i / vocabCardIDs.length) * 100)}%`)
 
-    vocabCards.forEach(card => {
+    vocabCards.forEach((card: any) => {
       const entry = vocabNotesMap[card.fields.Characters.value]
 
       if (entry) {

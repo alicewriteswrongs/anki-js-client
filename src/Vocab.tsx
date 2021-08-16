@@ -4,8 +4,13 @@ import DialogField from "./DialogField"
 import Dialog from "./Dialog"
 
 import { intervalToColor } from "./color"
+import { IVocab } from "./note"
 
-export default function Vocab(props) {
+interface Props {
+  vocab: IVocab
+}
+
+export default function Vocab(props: Props) {
   const { vocab } = props
 
   const [showDialog, setShowDialog] = useState(false)
@@ -15,7 +20,7 @@ export default function Vocab(props) {
       <div
         className="vocab"
         onClick={() => setShowDialog(true)}
-        key={vocab}
+        key={vocab.vocab}
         style={{
           backgroundColor: vocab.interval_avg
             ? intervalToColor(vocab.interval_avg)
