@@ -3,22 +3,34 @@ import { times } from "ramda"
 
 import Level from "./Level"
 
+import { styled } from './stitches.config'
 import { buildDB } from "./queries"
 
 const levels = times(n => n + 1, 60)
 
+const AppContainer = styled('div', {
+  'max-width': '900px',
+  margin: 'auto',
+
+  '.data-fetch-log': {
+    margin: '100px auto auto',
+    width: '40%',
+    fontFamily: 'monospace'
+  }
+})
+
 export default function HomePage() {
-  const [dataFetched, setDataFetched] = useState(false)
+  const [dataFetched, setDataFetched] = useState(true)
   const [fetchingLog, setFetchingLog] = useState(["fetching data..."])
 
   useEffect(() => {
-    buildDB(update => setFetchingLog(cur => [...cur, update])).then(() => {
-      setDataFetched(true)
-    })
+    // buildDB(update => setFetchingLog(cur => [...cur, update])).then(() => {
+    //   setDataFetched(true)
+    // })
   }, [])
 
   return (
-    <div className="App">
+    <AppContainer>
       {dataFetched ? (
         <div className="item-list">
           {levels.map(level => (
@@ -35,6 +47,6 @@ export default function HomePage() {
           ))}
         </div>
       )}
-    </div>
+    </AppContainer>
   )
 }

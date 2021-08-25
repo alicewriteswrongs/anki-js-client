@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-
 import Kanji from "./Kanji"
 import Vocab from "./Vocab"
 
 import db from "./db"
 import { IKanji, IVocab } from "./note"
+import {LevelHeader, LevelName, ProgressBackground, ProgressForeground} from "./Level_styles"
 
 const percentage = (learned: number, toLearn: number) =>
   Math.floor((learned / toLearn) * 100)
@@ -58,12 +58,12 @@ export default function Level(props: Props) {
 
   return (
     <div className="level">
-      <div className="level-header">
-        <div className="level-name" onClick={() => setExpanded(!expanded)}>
+      <LevelHeader>
+        <LevelName onClick={() => setExpanded(!expanded)}>
           {level}
-        </div>
+        </LevelName>
         {expanded ? <div className="refresh">リフレッシュ</div> : null}
-      </div>
+      </LevelHeader>
       {expanded ? (
         <div className="level">
           <div className="sub-level-heading">
@@ -76,14 +76,13 @@ export default function Level(props: Props) {
           </div>
           {kanji ? (
             <div className="progress">
-              <div className="progress-background">
-                <div
-                  style={{
+              <ProgressBackground>
+                <ProgressForeground
+                  css={{
                     width: `${percentage(kanjiLearned, kanji.length)}%`
                   }}
-                  className="progress-indicator"
                 />
-              </div>
+              </ProgressBackground>
             </div>
           ) : null}
           {kanji ? (
@@ -103,14 +102,13 @@ export default function Level(props: Props) {
           </div>
           {vocab ? (
             <div className="progress">
-              <div className="progress-background">
-                <div
-                  style={{
+              <ProgressBackground>
+                <ProgressForeground
+                  css={{
                     width: `${percentage(vocabLearned, vocab.length)}%`
                   }}
-                  className="progress-indicator"
                 />
-              </div>
+              </ProgressBackground>
             </div>
           ) : null}
           {vocab ? (

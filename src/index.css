@@ -7,45 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.App {
-  max-width: 900px;
-  margin: auto;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
-
-.data-fetch-log {
-  margin-top: 100px;
-  margin: auto;
-  width: 40%;
-  font-family: monospace;
-}
-
-.item-list {
-}
-
 .kanjis,
 .vocabs {
   display: flex;
@@ -55,32 +16,11 @@ code {
   margin-bottom: 2em;
 }
 
-.progress-background {
-  height: 5px;
-  width: 100%;
-  background-color: #dadada;
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.progress-indicator {
-  height: 5px;
-  background-color: #0cff0c;
-  position: absolute;
-  top: 0;
-}
-
 .kanji,
 .vocab {
   font-size: 60px;
   display: inline;
   cursor: pointer;
-}
-
-.level-header {
-  margin: 0.8em 0;
-  display: flex;
-  align-items: center;
 }
 
 .level-header .refresh {
@@ -91,12 +31,6 @@ code {
 }
 .level-header .refresh:hover {
   color: black;
-}
-
-.level-name {
-  cursor: pointer;
-  font-size: 1.5em;
-  font-weight: bold;
 }
 
 .sub-level-heading * {
